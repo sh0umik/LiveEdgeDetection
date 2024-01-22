@@ -1,5 +1,7 @@
 package com.adityaarora.liveedgedetection.activity;
 
+import static android.view.View.GONE;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -11,10 +13,6 @@ import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,6 +24,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.adityaarora.liveedgedetection.R;
 import com.adityaarora.liveedgedetection.constants.ScanConstants;
@@ -48,8 +51,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
-
-import static android.view.View.GONE;
 
 /**
  * This class initiates camera and detects edges on live view

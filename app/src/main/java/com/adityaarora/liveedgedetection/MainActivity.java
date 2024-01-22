@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.adityaarora.liveedgedetection.activity.ScanActivity;
 import com.adityaarora.liveedgedetection.constants.ScanConstants;
@@ -33,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            if(resultCode == Activity.RESULT_OK) {
-                if(null != data && null != data.getExtras()) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (null != data && null != data.getExtras()) {
                     String filePath = data.getExtras().getString(ScanConstants.SCANNED_RESULT);
                     Bitmap baseBitmap = ScanUtils.decodeBitmapFromFile(filePath, ScanConstants.IMAGE_NAME);
                     scannedImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                     scannedImageView.setImageBitmap(baseBitmap);
                 }
-            } else if(resultCode == Activity.RESULT_CANCELED) {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 finish();
             }
         }
