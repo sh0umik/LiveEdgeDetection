@@ -6,8 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 21
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         ndk {
@@ -23,6 +21,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'com.adityaarora.liveedgedetection'
 }
 
 dependencies {

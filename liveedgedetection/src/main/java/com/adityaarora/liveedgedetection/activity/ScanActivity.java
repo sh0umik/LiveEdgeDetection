@@ -81,7 +81,7 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
         init();
     }
@@ -134,7 +134,8 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_CAMERA:
                 onRequestCamera(grantResults);
@@ -291,6 +292,10 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
 
         String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.IMAGE_DIR,
                 ScanConstants.IMAGE_NAME, ScanActivity.this, 90)[0];
+
+        ScanUtils.saveToGallery(croppedBitmap, ScanConstants.IMAGE_DIR,
+                ScanConstants.IMAGE_NAME, ScanActivity.this, 90);
+
         setResult(Activity.RESULT_OK, new Intent().putExtra(ScanConstants.SCANNED_RESULT, path));
         //bitmap.recycle();
         System.gc();

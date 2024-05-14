@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LiveEdgeDetection.iml" filepath="$PROJECT_DIR$/LiveEdgeDetection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LiveEdgeDetection-master.iml" filepath="$PROJECT_DIR$/LiveEdgeDetection-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/liveedgedetection/liveedgedetection.iml" filepath="$PROJECT_DIR$/liveedgedetection/liveedgedetection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/liveedgedetection/liveedgedetection.iml" filepath="$PROJECT_DIR$/liveedgedetection/liveedgedetection.iml" />
-      <module fileurl="file://$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" filepath="$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" />
-      <module fileurl="file://$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" filepath="$PROJECT_DIR$/openCVLibrary340/openCVLibrary340.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LiveEdgeDetection.iml" filepath="$PROJECT_DIR$/.idea/modules/LiveEdgeDetection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/LiveEdgeDetection.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.iml" filepath="$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.main.iml" filepath="$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/liveedgedetection/LiveEdgeDetection.liveedgedetection.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.main.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary343/LiveEdgeDetection.openCVLibrary343.unitTest.iml" />
     </modules>
   </component>
 </project>

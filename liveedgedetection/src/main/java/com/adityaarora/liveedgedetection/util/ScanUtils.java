@@ -1,6 +1,7 @@
 package com.adityaarora.liveedgedetection.util;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
@@ -8,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.hardware.Camera;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -38,10 +41,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import static org.opencv.core.CvType.CV_8UC1;
-import static org.opencv.imgproc.Imgproc.THRESH_BINARY;
-import static org.opencv.imgproc.Imgproc.THRESH_OTSU;
 
 /**
  * This class provides utilities for camera.
@@ -490,6 +489,31 @@ public class ScanUtils {
         mReturnParams[0] = mDirectory.getAbsolutePath();
         mReturnParams[1] = mFileName;
         return mReturnParams;
+    }
+
+    public static void saveToGallery(Bitmap bitmap, String fileName, String subFolderPath, Context mContext, int quality) {
+
+        File extBaseDir = Environment.getExternalStorageDirectory();
+        File file = new File(extBaseDir.getAbsolutePath() + "/DCIM/" + subFolderPath);
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                return;
+            }
+        }
+
+        String filePath = file.getAbsolutePath() + "/" + fileName;
+        try {
+            FileOutputStream mFileOutputStream = new FileOutputStream(filePath);
+            //Compress method used on the Bitmap object to write  image to output stream
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, mFileOutputStream);
+            mFileOutputStream.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+
+        ContentValues values = new ContentValues();
+
+        mContext.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
 
     private static File getBaseDirectoryFromPathString(String mPath, Context mContext) {
