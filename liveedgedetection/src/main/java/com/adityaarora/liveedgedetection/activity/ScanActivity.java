@@ -2,6 +2,7 @@ package com.adityaarora.liveedgedetection.activity;
 
 import static android.view.View.GONE;
 
+import android.net.Uri;
 import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -50,6 +51,7 @@ import org.opencv.imgproc.Imgproc;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Stack;
 
 /**
@@ -290,15 +292,26 @@ public class ScanActivity extends AppCompatActivity implements IScanner, View.On
             croppedBitmap = copyBitmap;
         }
 
-        String path = ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.IMAGE_DIR,
-                ScanConstants.IMAGE_NAME, ScanActivity.this, 90)[0];
+        String path = Objects.requireNonNull(ScanUtils.saveToInternalMemory(croppedBitmap, ScanConstants.IMAGE_DIR,
+                ScanConstants.IMAGE_NAME, ScanActivity.this, 100));
 
-        ScanUtils.saveToGallery(croppedBitmap, ScanConstants.IMAGE_DIR,
-                ScanConstants.IMAGE_NAME, ScanActivity.this, 90);
-
-        setResult(Activity.RESULT_OK, new Intent().putExtra(ScanConstants.SCANNED_RESULT, path));
+        //ScanUtils.saveToGallery(croppedBitmap, ScanConstants.IMAGE_DIR,ScanActivity.this, 90);
+        //setResult(Activity.RESULT_OK, new Intent().putExtra(ScanConstants.SCANNED_RESULT, path));
         //bitmap.recycle();
+
         System.gc();
         finish();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse("file://" + path), "image/jpeg");
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Handle back button press here
+        // For example, you can navigate back to a previous activity or perform any other action
+        // In this example, I'm just calling super.onBackPressed() to exit the app
+        super.onBackPressed();
     }
 }

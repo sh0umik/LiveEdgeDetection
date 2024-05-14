@@ -41,12 +41,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * This class provides utilities for camera.
  */
 
 public class ScanUtils {
+
+    private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
+
     private static final String TAG = ScanUtils.class.getSimpleName();
 
     public static boolean compareFloats(double left, double right) {
@@ -472,49 +476,42 @@ public class ScanUtils {
         return output;
     }
 
-    public static String[] saveToInternalMemory(Bitmap bitmap, String mFileDirectory, String
+    private static String getRandomString(final int sizeOfRandomString)
+    {
+        final Random random=new Random();
+        final StringBuilder sb=new StringBuilder(sizeOfRandomString);
+        for(int i=0;i<sizeOfRandomString;++i)
+            sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
+        return sb.toString();
+    }
+
+    public static String saveToInternalMemory(Bitmap bitmap, String mFileDirectory, String
             mFileName, Context mContext, int mQuality) {
 
-        String[] mReturnParams = new String[2];
-        File mDirectory = getBaseDirectoryFromPathString(mFileDirectory, mContext);
-        File mPath = new File(mDirectory, mFileName);
+        File extBaseDir = Environment.getExternalStorageDirectory();
+        File file = new File(extBaseDir.getAbsolutePath() + "/DCIM/" + mFileDirectory);
+        if (!file.exists()) {
+            if (!file.mkdirs()) {
+                return null;
+            }
+        }
+
+        String fileName = "image-" + getRandomString(10) + ".jpg";
+
+        String filePath = file.getAbsolutePath() + "/" + fileName;
+
         try {
-            FileOutputStream mFileOutputStream = new FileOutputStream(mPath);
+            FileOutputStream mFileOutputStream = new FileOutputStream(filePath);
             //Compress method used on the Bitmap object to write  image to output stream
             bitmap.compress(Bitmap.CompressFormat.JPEG, mQuality, mFileOutputStream);
             mFileOutputStream.close();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage(), e);
         }
-        mReturnParams[0] = mDirectory.getAbsolutePath();
-        mReturnParams[1] = mFileName;
-        return mReturnParams;
+        return filePath;
     }
 
-    public static void saveToGallery(Bitmap bitmap, String fileName, String subFolderPath, Context mContext, int quality) {
 
-        File extBaseDir = Environment.getExternalStorageDirectory();
-        File file = new File(extBaseDir.getAbsolutePath() + "/DCIM/" + subFolderPath);
-        if (!file.exists()) {
-            if (!file.mkdirs()) {
-                return;
-            }
-        }
-
-        String filePath = file.getAbsolutePath() + "/" + fileName;
-        try {
-            FileOutputStream mFileOutputStream = new FileOutputStream(filePath);
-            //Compress method used on the Bitmap object to write  image to output stream
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, mFileOutputStream);
-            mFileOutputStream.close();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-
-        ContentValues values = new ContentValues();
-
-        mContext.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-    }
 
     private static File getBaseDirectoryFromPathString(String mPath, Context mContext) {
 
